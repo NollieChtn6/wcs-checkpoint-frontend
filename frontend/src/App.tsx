@@ -5,7 +5,7 @@ import { PageLayout } from "./components/Layout";
 import { ApolloProvider } from "@apollo/client";
 import { client } from "./api/client";
 
-import { useCountryStore } from "../store/countryStore";
+import { useCountryStore } from "./store/countryStore";
 import { useEffect } from "react";
 import { CountryDetails } from "./pages/CountryDetails";
 

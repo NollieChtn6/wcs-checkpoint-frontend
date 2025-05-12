@@ -12,3 +12,11 @@ query Countries {
     emoji
   }
 }`;
+
+export const GET_CONTINENTS = gql`
+query Continents {
+  continents {
+    id
+    name
+  }
+}`;

@@ -1,4 +1,5 @@
 import { CountriesList } from "../components/CountriesList";
+import { NewCountryForm } from "../components/NewCountryForm";
 
 export function HomePage() {
 	return (
@@ -9,6 +10,7 @@ export function HomePage() {
 			</div>
 			<div className="form-container">
 				<h2>➕ Ajouter un pays</h2>
+				<NewCountryForm />
 			</div>
 		</div>
 	);

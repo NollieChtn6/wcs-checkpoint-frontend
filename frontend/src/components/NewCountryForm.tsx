@@ -7,6 +7,7 @@ export function NewCountryForm() {
 	const { continents, fetchContinents } = useContinentStore();
 	const { createCountry, isProcessing } = useCountryStore();
 
+	const [errorMessage, setErrorMessage] = useState<string>("");
 	const [formData, setFormData] = useState<NewCountryFormData>({
 		name: "",
 		code: "",
@@ -23,13 +24,20 @@ export function NewCountryForm() {
 	) => {
 		const { name, value } = event.target;
 		setFormData((prev) => ({ ...prev, [name]: value }));
+		setErrorMessage("");
 	};
 
 	const handleSubmit = (event: React.FormEvent) => {
 		event.preventDefault();
-		console.log("Submitted country data:", formData);
-		createCountry(formData);
-		setFormData({ name: "", code: "", emoji: "", continent: "" });
+		try {
+			console.log("Submitted country data:", formData);
+			createCountry(formData);
+			setFormData({ name: "", code: "", emoji: "", continent: "" });
+			setErrorMessage("");
+		} catch (error) {
+			setErrorMessage("Une erreur est survenue. Veuillez réessayer.");
+			console.error("Form error:", error);
+		}
 	};
 
 	return (
@@ -90,6 +98,7 @@ export function NewCountryForm() {
 				</select>
 			</div>
 
+			{errorMessage && <p className="error-message">{errorMessage}</p>}
 			<button type="submit" className="submit-btn" disabled={isProcessing}>
 				{isProcessing ? "Sauvegarde en cours..." : "Sauvegarder"}
 			</button>

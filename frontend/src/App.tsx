@@ -6,15 +6,18 @@ import { ApolloProvider } from "@apollo/client";
 import { client } from "./api/client";
 
 import { useCountryStore } from "./store/countryStore";
+import { useContinentStore } from "./store/continentStore";
 import { useEffect } from "react";
 import { CountryDetails } from "./pages/CountryDetails";
 
 function App() {
 	const { fetchCountries } = useCountryStore();
+	const { fetchContinents } = useContinentStore();
 
 	useEffect(() => {
 		fetchCountries();
-	}, [fetchCountries]);
+		fetchContinents();
+	}, [fetchCountries, fetchContinents]);
 
 	return (
 		<ApolloProvider client={client}>
